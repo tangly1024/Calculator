@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="myCtrl">
+   <head>
+      <title>物流计算器</title>
+      <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- 引入 Bootstrap -->
+      <link href="stylesheets/bootstrap-3.3.5.css" rel="stylesheet">
+   </head>
+   <body>
+	  <!-- 导航 -->
+      <nav class="navbar navbar-default" role="navigation">
+         <div class="navbar-header">
+         <a class="navbar-brand" href="#">老年人专用</a>
+         </div>
+         <div>
+            <!-- 导航 -->
+            <ul class="nav navbar-nav">
+               <li class="active"><a href="#">计算器</a></li>
+               <li><a href="#">后续功能</a></li>
+               <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                 	 预留菜单
+                     <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                     <li><a href="#">jmeter</a></li>
+                     <li><a href="#">EJB</a></li>
+                     <li><a href="#">Jasper Report</a></li>
+                     <li class="divider"></li>
+                     <li><a href="#">作者：唐哼哼</a></li>
+                     <li class="divider"></li>
+                     <li><a href="#">说明</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </div>
+      </nav>
+      <!-- 主要内容 -->
+      <div class="container">
+         <div class="row">
+            <div class="col-sm-2">
+               <div class="well">
+                    <label>输入</label>
+                   	<div>
+						<p> <input type="text" class="form-control" ng-model="text"></p>
+						<h2>{{text}}</h2>
+  					</div>
+                  		<button class="form-control btn btn-primary" ng-click="reset()">重置数据</button>
+               </div>
+               
+            </div>
+            <div class="col-sm-10">
+                  <div class="panel panel-default">
+                  	<div class="panel panel-body">
+                  		<div class="form-group">
+                  			<div class="row col-sm-12">
+                  			<div class="col-sm-2">
+                  				<label class="control-label">蒸蛋糕</label>
+                  				<input type="number" class="form-control" value="0" ng-model="a"/>
+                  			</div>
+                  			<div class="col-sm-2">
+                  				<label class="control-label">三明治</label>
+                  				<input type="number" class="form-control" value="0" ng-model="b"/>
+                  			</div>
+                  			<div class="col-sm-2">
+                  				<label class="control-label">纸柜</label>
+                  				<input type="number" class="form-control" value="0" ng-model="c"/>
+                  			</div>
+                  			<div class="col-sm-2">
+                  				<label class="control-label">帐篷</label>
+                  				<input type="number" class="form-control" value="0" ng-model="d"/>
+                  			</div>
+                  			<div class="col-sm-2">
+                  				<label class="control-label">水杯</label>
+                  				<input type="number" class="form-control" value="0" ng-model="e"/>
+                  			</div>
+                  			</div>
+                  		</div>
+                 	</div>
+            		
+            		
+            		<div class="panel panel-body">
+            			<div class="form-group">
+                  			<div class="row col-sm-12">
+                  			<div class="col-sm-2">
+                  				<label class="control-label">总体积</label>
+                  				<div type="text" class="form-control">
+                  				{{a*41*24*21/1000000+b*41*25*22/1000000+c*90*81*25/1000000+d*147*20*20/1000000+e*34*34*29/1000000 | currency:""}}
+                  				</div>
+                  			</div>
+                  			<div class="col-sm-2">
+                  				<label class="control-label">总重量</label>
+                  				<text class="form-control">
+                  				{{a*2.5+b*2.5+c*22+d*17+e*10 | number:0}}
+                  				</text>
+                  			</div>
+                  			</div>
+                  		</div>
+            		</div>
+            </div>      
+         		  <div class="panel-foot">
+					<table class="table table-bordered table-striped table-condensed table-hover table-responsive" >
+						<thead>
+							<tr>
+								<th style="text-align: center;">种类</th>
+								<th style="text-align: center;" >尺寸(cm)</th>
+								<th style="text-align: center;">重量(kg)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td align="center">蒸蛋糕</td>
+								<td align="center">41x24x21</td>
+								<td align="center">2.5</td>
+							</tr>
+							<tr>
+								<td align="center">三明治</td>
+								<td align="center">41x25x22</td>
+								<td align="center">2.5</td>
+							</tr>
+							<tr>
+								<td align="center">纸柜</td>
+								<td align="center">90x81x25</td>
+								<td align="center">22</td>
+							</tr>
+							<tr>
+								<td align="center">帐篷</td>
+								<td align="center">147x20x20</td>
+								<td align="center">17</td>
+							</tr>
+							<tr>
+								<td align="center">水杯</td>
+								<td align="center">34x34x29</td>
+								<td align="center">10</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>	
+         </div>
+      	</div>
+      </div>
+      
+	  
+      <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+      <script src="javascripts/jquery-1.11.1.min.js"></script> 
+      <!-- 包括所有已编译的插件 -->
+      <script src="javascripts/bootstrap.min.js"></script>
+      <!-- 包括AngularJs插件 -->
+      <script src="javascripts/angular.min.js"></script>
+      <script>
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope) {
+		    $scope.a= 0;
+		    $scope.b= 0;
+		    $scope.c= 0;
+		    $scope.d= 0;
+		    $scope.e= 0;
+		    
+		    $scope.reset=function(){
+		    	$scope.a= 0;
+			    $scope.b= 0;
+			    $scope.c= 0;
+			    $scope.d= 0;
+			    $scope.e= 0;
+		    }
+		    
+		});
+	  </script>
+      
+   </body>
+</html>
+
+    
