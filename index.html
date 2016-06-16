@@ -5,101 +5,122 @@
       <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- 引入 Bootstrap -->
-      <link href="stylesheets/bootstrap-3.3.5.css" rel="stylesheet">
+      <link href="stylesheets/bootstrap-3.3.5.min.css" rel="stylesheet">
+       <!-- 引入 Select2 -->
+      <link href="stylesheets/select2.min.css" rel="stylesheet">
    </head>
    <body>
-	  <!-- 导航 -->
-      <nav class="navbar navbar-default" role="navigation">
-         <div class="navbar-header">
-         <a class="navbar-brand" href="#">老年人专用</a>
-         </div>
-         <div>
-            <!-- 导航 -->
-            <ul class="nav navbar-nav">
-               <li class="active"><a href="#">计算器</a></li>
-               <li><a href="#">后续功能</a></li>
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                 	 预留菜单
-                     <b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu">
-                     <li><a href="#">jmeter</a></li>
-                     <li><a href="#">EJB</a></li>
-                     <li><a href="#">Jasper Report</a></li>
-                     <li class="divider"></li>
-                     <li><a href="#">作者：唐哼哼</a></li>
-                     <li class="divider"></li>
-                     <li><a href="#">说明</a></li>
-                  </ul>
-               </li>
+	  <!-- 导航  改为响应式-->
+     <nav class="navbar navbar-default" role="navigation">
+   <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" 
+         data-target="#example-navbar-collapse">
+         <span class="sr-only">切换导航</span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">物流计算器</a>
+   </div>
+   <div class="collapse navbar-collapse" id="example-navbar-collapse">
+      <ul class="nav navbar-nav">
+         <li class="active"><a href="#">好彩头专用</a></li>
+         <li><a href="#">其它</a></li>
+         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               版权 <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+               <li><a href="#">制作</a></li>
+               <li><a href="#">唐哼哼</a></li>
+               <li class="divider"></li>
+               <li><a href="#">版本：V1.1</a></li>
             </ul>
-         </div>
-      </nav>
+         </li>
+      </ul>
+   </div>
+</nav>
+      
       <!-- 主要内容 -->
       <div class="container">
          <div class="row">
-            <div class="col-sm-2">
-               <div class="well">
-                    <label>输入</label>
-                   	<div>
-						<p> <input type="text" class="form-control" ng-model="text"></p>
-						<h2>{{text}}</h2>
-  					</div>
-                  		<button class="form-control btn btn-primary" ng-click="reset()">重置数据</button>
+
+            <div class="col-sm-4">
+            <div class="form-group">
+            <button type="button" class="btn btn-primary form-control" data-toggle="collapse" 
+  					data-target="#query">查询器</button>
+			</div>
+			<div id="query" class="collapse in">
+               <div class="panel panel-default">
+               <div class="panel panel-body">
+                    <label>查询产品</label>
+<!--                    	<div> -->
+<!-- 						<p> <input type="text" class="form-control" ng-model="text"></p> -->
+<!-- 						<h2>{{text}}</h2> -->
+<!--   					</div> -->
+					<div class="form-group form-inline">
+	  					<select id="queryProduct" class="form-control" style="width:100%" ng-model="queryProduct" ng-options="product.name for product in productList">
+	  						<option value=""></option>
+  						</select>
+ 					</div>
                </div>
+               </div>
+			</div>
                
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-8">
+        		  <div class="form-group">
+            	    <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#calc">计算器</button>
+            	  </div>
+                  <div id="calc" class="collapse in">
                   <div class="panel panel-default">
+              	    
                   	<div class="panel panel-body">
                   		<div class="form-group">
-                  			<div class="row col-sm-12">
-                  			<div class="col-sm-2">
-                  				<label class="control-label">蒸蛋糕</label>
-                  				<input type="number" class="form-control" value="0" ng-model="a"/>
-                  			</div>
-                  			<div class="col-sm-2">
-                  				<label class="control-label">三明治</label>
-                  				<input type="number" class="form-control" value="0" ng-model="b"/>
-                  			</div>
-                  			<div class="col-sm-2">
-                  				<label class="control-label">纸柜</label>
-                  				<input type="number" class="form-control" value="0" ng-model="c"/>
-                  			</div>
-                  			<div class="col-sm-2">
-                  				<label class="control-label">帐篷</label>
-                  				<input type="number" class="form-control" value="0" ng-model="d"/>
-                  			</div>
-                  			<div class="col-sm-2">
-                  				<label class="control-label">水杯</label>
-                  				<input type="number" class="form-control" value="0" ng-model="e"/>
-                  			</div>
+<!--                   			<div><div class="form-control btn btn-white" ng-click="reset()">计算器</div> -->
+                  			<div class="row">
+	                  			<div class="col-sm-3" ng-repeat="product in productList">
+	                  				<label class="control-label">{{product.name}}</label>
+	                  				<input type="number" class="form-control" ng-change="calculator()" ng-model="product.number"/>
+	                  			</div>
+	                  			<div class="col-sm-3"style="float: right">
+	                  			<label class="control-label">重置数据</label>
+	                  			<button class="form-control btn btn-primary" ng-click="reset()">清空</button>
+	                  			</div>
                   			</div>
                   		</div>
                  	</div>
             		
-            		
-            		<div class="panel panel-body">
-            			<div class="form-group">
-                  			<div class="row col-sm-12">
-                  			<div class="col-sm-2">
+            			<div class="panel panel-body">
+            				<div class="form-group">
+            				<div class="col-sm-1"></div>
+                  			<div class="col-sm-4 well">
                   				<label class="control-label">总体积</label>
-                  				<div type="text" class="form-control">
-                  				{{a*41*24*21/1000000+b*41*25*22/1000000+c*90*81*25/1000000+d*147*20*20/1000000+e*34*34*29/1000000 | currency:""}}
-                  				</div>
+<!--                   				<div type="text" class="form-control">{{totalVolume}}</div> -->
+							<div class="input-group">
+							   <input type="text" class="form-control" readonly="readonly" ng-model="totalVolume">
+							   <span class="input-group-addon">m<sup>3</sup></span>
+							</div>
+            				
                   			</div>
-                  			<div class="col-sm-2">
+                  			<div class="col-sm-2"></div>
+                  			<div class="col-sm-4 well">
                   				<label class="control-label">总重量</label>
-                  				<text class="form-control">
-                  				{{a*2.5+b*2.5+c*22+d*17+e*10 | number:0}}
-                  				</text>
+<!--                   				<div class="form-control">{{totalWeight}}</div> -->
+							   <div class="input-group">
+								  	 <input type="text" class="form-control" readonly="readonly" ng-model="totalWeight">
+								  	 <span class="input-group-addon">kg</span>
+								</div>
                   			</div>
                   			</div>
-                  		</div>
+            			</div>
             		</div>
             </div>      
          		  <div class="panel-foot">
+         		  	<div class="form-group">
+              	        <button class="btn btn-warning btn-block" data-toggle="collapse" data-target="#data">数据表</button>
+              	    </div>
+              	    <div id="data" class="collapse in">
 					<table class="table table-bordered table-striped table-condensed table-hover table-responsive" >
 						<thead>
 							<tr>
@@ -109,34 +130,15 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td align="center">蒸蛋糕</td>
-								<td align="center">41x24x21</td>
-								<td align="center">2.5</td>
-							</tr>
-							<tr>
-								<td align="center">三明治</td>
-								<td align="center">41x25x22</td>
-								<td align="center">2.5</td>
-							</tr>
-							<tr>
-								<td align="center">纸柜</td>
-								<td align="center">90x81x25</td>
-								<td align="center">22</td>
-							</tr>
-							<tr>
-								<td align="center">帐篷</td>
-								<td align="center">147x20x20</td>
-								<td align="center">17</td>
-							</tr>
-							<tr>
-								<td align="center">水杯</td>
-								<td align="center">34x34x29</td>
-								<td align="center">10</td>
+							<tr ng-repeat="product in productList">
+								<td align="center">{{product.name}}</td>
+								<td align="center">{{product.size}}</td>
+								<td align="center">{{product.weight}}</td>
 							</tr>
 						</tbody>
 					</table>
-				</div>	
+					</div>
+				  </div>
          </div>
       	</div>
       </div>
@@ -148,23 +150,57 @@
       <script src="javascripts/bootstrap.min.js"></script>
       <!-- 包括AngularJs插件 -->
       <script src="javascripts/angular.min.js"></script>
+      <!-- 包括Select2插件 -->
+      <script src="javascripts/select2.min.js"></script>
+      
       <script>
 		var app = angular.module('myApp', []);
-		app.controller('myCtrl', function($scope) {
-		    $scope.a= 0;
-		    $scope.b= 0;
-		    $scope.c= 0;
-		    $scope.d= 0;
-		    $scope.e= 0;
+		app.controller('myCtrl', function($scope,$filter) {
+		    $scope.productList =[
+		                         { id: 1, name: '2.5kg蒸蛋糕', size: '41*24*21',volume:0.020664,weight:2.5,number:0}, 
+		                         { id: 2, name: '2.5kg三明治', size: '41*25*22',volume:0.02255,weight:2.5,number:0}, 
+		                         { id: 3, name: '纸柜', size: '90*81*25',volume:0.18225,weight:22,number:0}, 
+		                         { id: 4, name: '帐篷', size: '147*20*20',volume:0.0558,weight:17,number:0}, 
+		                         { id: 5, name: '水杯', size: '34*34*29',volume:0.033524,weight:10,number:0},
+		                         { id: 6, name: '促销台', size: '83*71*35',volume:0.206255,weight:35,number:0},
+		                         { id: 7, name: '1kg三明治', size: '33*21*20',volume:0.01386,weight:1.3,number:0},
+		                         { id: 8, name: '1.5kg肉松饼', size: '63*40*30',volume:0.0756,weight:7,number:0},
+		                         { id: 9, name: '2.5kg肉松饼', size: '34*23*17',volume:0.013294,weight:3.2,number:0},
+		                         ];
 		    
+		    select2();
+		   	
+		   	$scope.calculator = function() {
+		   		var totalVolume=0;
+		   		var totalWeight=0;
+		   		
+		   		$($scope.productList).each(function(index,element){
+		   			totalVolume += (element.number * element.volume);
+		   			totalWeight += (element.number * element.weight);
+		    	})
+		    	$scope.totalVolume = $filter('number')(totalVolume);
+		   		$scope.totalWeight = $filter('number')(totalWeight);
+		   	}
+		   	
 		    $scope.reset=function(){
-		    	$scope.a= 0;
-			    $scope.b= 0;
-			    $scope.c= 0;
-			    $scope.d= 0;
-			    $scope.e= 0;
+		    	//遍历清空数据
+		    	$($scope.productList).each(function(index,element){
+		    		element.number = 0;
+		    	})
+		    	$scope.totalVolume = 0;
+		    	$scope.totalWeight = 0;
 		    }
-		    
+			 function select2(){
+				setTimeout(function() {
+				   $("#queryProduct").select2({
+				          placeholder: '请选择所属路段',
+				           allowClear: true,
+				            language: "zh-CN"
+				    }).off("select2:select").on("select2:select", function(e) {
+				            $scope.$apply();
+				        });
+				  }, 0);
+		 	 }
 		});
 	  </script>
       
