@@ -7,26 +7,34 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- 引入 Bootstrap -->
       <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
-       <!-- 引入 Select2 -->
+      <!-- 引入 Select2 -->
       <link href="stylesheets/select2.min.css" rel="stylesheet">
+      
+      <!-- 特殊自定义样式 -->
+      <style type="text/css">
+		/* 重写panel底边，使总重量和总体积离输入框距离更近 */
+		.panel {
+		    margin-bottom: 8px;
+		}
+      </style>
    </head>
  
    <body>
 
 	  <!-- 导航  改为响应式-->
-     <nav class="navbar navbar-default" role="navigation">
-   <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" 
-         data-target="#example-navbar-collapse">
-         <span class="sr-only">切换导航</span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-th"></i></a>
-   </div>
-   <div class="collapse navbar-collapse" id="example-navbar-collapse">
-      <ul class="nav navbar-nav">
+     <nav class="navbar navbar-default  hidden-sm hidden-xs" role="navigation">
+	   <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" 
+	         data-target="#example-navbar-collapse">
+	         <span class="sr-only">切换导航</span>
+	         <span class="icon-bar"></span>
+	         <span class="icon-bar"></span>
+	         <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-th"></i> 计算器</a>
+	   </div>
+	   <div class="collapse navbar-collapse" id="example-navbar-collapse">
+      	<ul class="nav navbar-nav">
          <li class="active"><a href="#">好彩头物流计算器</a></li>
          <li>
 	         <a ng-click="about()" style="cursor: pointer;">
@@ -35,7 +43,7 @@
          </li>
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-             <i class="glyphicon glyphicon-pencil"></i> 版本 V1.3.1<b class="caret"></b>
+             <i class="glyphicon glyphicon-pencil"></i> 版本 V1.4<b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
                <li><a href="#">版权所有：唐</a></li>
@@ -49,7 +57,9 @@
       <div class="container">
 			<!-- 左侧栏 -->
             <div class="col-sm-4">
-               <div class="panel panel-default">
+            
+			   <!-- 查询器Panel -->
+               <div class="panel panel-default hidden-sm hidden-xs">
                 <div class="form-group">
             	<button type="button" class="btn btn-primary form-control" data-toggle="collapse" 
   					data-target="#query">
@@ -66,8 +76,10 @@
  					</div>
                </div>
                </div>
-			</div>
-			<div class="panel panel-default">
+			 </div>
+			 
+			<!-- 数据表Panel -->
+			<div class="panel panel-default  hidden-sm hidden-xs">
             		<div class="form-group">
               	   		<button class="btn btn-warning btn-block" data-toggle="collapse" data-target="#data">
               	      <i class="glyphicon glyphicon-list-alt"></i> 数据表</button>
@@ -94,11 +106,12 @@
               	</div>
              </div>
             </div>
+            
+            
 			<!-- 中右栏 -->
-            <div class="col-sm-8">
+            <div class="col-sm-12 col-xs-12 col-md-8">
 				  <!--  计算器核心界面 -->
         		<div class="panel panel-default">
-        		 
         		  <div class="form-group">
             	    <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#calc">
             	    <i class="glyphicon glyphicon-yen"></i>
@@ -110,36 +123,31 @@
                   	<div class="panel panel-body">
                   		<div class="form-group">
                   			<div class="row">
-	                  			<div class="col-sm-3" ng-repeat="product in productList">
+	                  			<div class="col-xs-3" ng-repeat="product in productList">
 	                  				<label class="control-label">{{product.name}}</label>
 	                  				<input type="number" class="form-control" ng-change="calculator()" ng-model="product.number"/>
 	                  			</div>
 	                  			<div class="col-sm-6"></div>
-	                  			<div class="col-sm-3">
-	                  			<label class="control-label">重置数据</label>
-	                  			<button class="btn btn-primary btn-block" ng-click="reset()">清空</button>
-	                  			</div>
+	                  			<div class="col-xs-3">
+		                  			<label class="control-label">重置数据</label>
+		                  			<button class="btn btn-primary btn-block" ng-click="reset()">清空</button>
+                  				</div>
                   			</div>
                   		</div>
                  	</div>
                  	
             			<div class="panel panel-body">
             				<div class="form-group">
-            				<div class="col-sm-1"></div>
-                  			<div class="col-sm-4 well">
-                  				<label class="control-label">总体积</label>
-<!--                   				<div type="text" class="form-control">{{totalVolume}}</div> -->
-							<div class="input-group">
-							   <input type="text" class="form-control" readonly="readonly" ng-model="totalVolume">
-							   <span class="input-group-addon">m<sup>3</sup></span>
-							</div>
-            				
+                  			<div class="col-xs-6 well">
+								<div class="input-group">
+								   <span class="input-group-btn"><button class="btn btn-default" type="button">总体积 </button></span>
+								   <input type="text" class="form-control" readonly="readonly" ng-model="totalVolume">
+								   <span class="input-group-addon">m<sup>3</sup></span>
+								</div>
                   			</div>
-                  			<div class="col-sm-2"></div>
-                  			<div class="col-sm-4 well">
-                  				<label class="control-label">总重量</label>
-<!--                   				<div class="form-control">{{totalWeight}}</div> -->
+                  			<div class="col-xs-6 well">
 							   <div class="input-group">
+							         <span class="input-group-btn"><button class="btn btn-default" type="button">总重量 </button></span>
 								  	 <input type="text" class="form-control" readonly="readonly" ng-model="totalWeight">
 								  	 <span class="input-group-addon">kg</span>
 								</div>
@@ -165,11 +173,7 @@
 						<h4 class="modal-title">{{modalTitle}}</h4>					
 					</div>
 					<div class="modal-body">
-						<h5>当前版本V1.3.1</h5>
-						<blockquote>计算器直接填写数据就能出结果,点击清空消掉已填写的数据</blockquote>
-						<blockquote>数据表用于查看所有产品的详细规格</blockquote>
-						<blockquote>查询器的功能正在进行中</blockquote>
-						<blockquote>三个模块点击标题按钮都可以折叠</blockquote>
+						{{aboutText}}
 					</div>
 				</div>
 			</div>
@@ -188,6 +192,7 @@
       
       <script>
 		var app = angular.module('myApp', []);
+	
 		app.controller('myCtrl', function($scope,$filter) {
 		    $scope.productList =[
 		                         { id: 1, name: '2.5kg蒸蛋糕', size: '41*24*21',volume:0.020664,weight:2.5,number:0}, 
@@ -209,6 +214,8 @@
 		    	showStaffModal();
 		    }
 		    
+		    $scope.aboutText = '暂无说明';
+		    
 		    //----------------------激活模态框------------------------
 			function showStaffModal() {
 				$('#about').modal('show', {
@@ -225,8 +232,8 @@
 		   			totalVolume += (element.number * element.volume);
 		   			totalWeight += (element.number * element.weight);
 		    	})
-		    	$scope.totalVolume = $filter('currency')(totalVolume,'');
-		   		$scope.totalWeight = $filter('number')(totalWeight);
+		    	$scope.totalVolume = $filter('number')(totalVolume,2);
+		   		$scope.totalWeight = $filter('number')(totalWeight,0);
 		   	}
 		   	
 		    //---------------------重置按钮--------------------------
