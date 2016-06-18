@@ -16,6 +16,18 @@
 		.panel {
 		    margin-bottom: 8px;
 		}
+		.well {
+ 			margin-bottom: 0px;
+    	}
+    	/*向边沿贴紧*/
+    	.container
+    	{
+		    padding-left: 0px;
+		    margin-left: 0px;
+		    padding-right: 0px;
+		    margin-right: 0px;
+		}
+    /* margin-bottom: 20px; */
       </style>
    </head>
  
@@ -43,7 +55,7 @@
          </li>
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-             <i class="glyphicon glyphicon-pencil"></i> 版本 V1.4<b class="caret"></b>
+             <i class="glyphicon glyphicon-pencil"></i> 版本 V1.5<b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
                <li><a href="#">版权所有：唐</a></li>
@@ -54,12 +66,67 @@
 </nav>
       
       <!-- 主界面 -->
-      <div class="container">
-			<!-- 左侧栏 -->
-            <div class="col-sm-4">
+      <div class="">
             
+			<!-- 左中栏 -->
+            <div class="col-md-8 col-xs-12">
+				  <!--  计算器核心界面 -->
+        		<div class="panel panel-default">
+        		  
+        		  <div class="form-group hidden-xs">
+            	    <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#calc">
+            	    <i class="glyphicon glyphicon-yen"></i>  计算器</button>
+            	  </div>
+            	  
+                  <div id="calc" class="collapse in">
+                  
+                  	<div class="panel panel-body">
+                  		<div class="form-group">
+                  			<div class="row">
+	                  			<div class="col-sm-3 col-xs-6" ng-repeat="product in productList">
+	                  				<label class="control-label">{{product.name}}</label>
+	                  				<input type="number" class="form-control" ng-change="calculator()" ng-model="product.number"/>
+	                  			</div>
+	                  			<div class="col-sm-6"></div>
+	                  			<div class="col-sm-3 col-xs-6">
+		                  			<label class="control-label">重置数据</label>
+		                  			<button class="btn btn-primary btn-block" ng-click="reset()">清空</button>
+                  				</div>
+                  			</div>
+                  		</div>
+                 	</div>
+                 	
+            			<div class="panel panel-body">
+            				<div class="form-group">
+                  			<div class="col-sm-6 col-xs-6 well">
+								<div class="input-group">
+								   <span class="input-group-btn"><button class="btn btn-default" type="button">总体积 </button></span>
+								   <input type="text" class="form-control" readonly="readonly" ng-model="totalVolume">
+								   <span class="input-group-addon">m<sup>3</sup></span>
+								</div>
+                  			</div>
+                  			<div class="col-sm-6 col-xs-6 well">
+							   <div class="input-group">
+							         <span class="input-group-btn"><button class="btn btn-default" type="button">总重量 </button></span>
+								  	 <input type="text" class="form-control" readonly="readonly" ng-model="totalWeight">
+								  	 <span class="input-group-addon">kg</span>
+								</div>
+                  			</div>
+                  			</div>
+            			</div>
+            		
+            		</div>
+           		 </div>      
+         		  <div class="panel-foot">
+         		  	
+				  </div>
+         	</div>
+     		
+     		<!-- 右侧栏 -->
+            <div class="col-md-4 hidden-sm hidden-xs">
+
 			   <!-- 查询器Panel -->
-               <div class="panel panel-default hidden-sm hidden-xs">
+               <div class="panel panel-default">
                 <div class="form-group">
             	<button type="button" class="btn btn-primary form-control" data-toggle="collapse" 
   					data-target="#query">
@@ -106,61 +173,7 @@
               	</div>
              </div>
             </div>
-            
-            
-			<!-- 中右栏 -->
-            <div class="col-sm-12 col-xs-12 col-md-8">
-				  <!--  计算器核心界面 -->
-        		<div class="panel panel-default">
-        		  <div class="form-group">
-            	    <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#calc">
-            	    <i class="glyphicon glyphicon-yen"></i>
-            	    计算器</button>
-            	  </div>
-            	  
-                  <div id="calc" class="collapse in">
-                  
-                  	<div class="panel panel-body">
-                  		<div class="form-group">
-                  			<div class="row">
-	                  			<div class="col-xs-3" ng-repeat="product in productList">
-	                  				<label class="control-label">{{product.name}}</label>
-	                  				<input type="number" class="form-control" ng-change="calculator()" ng-model="product.number"/>
-	                  			</div>
-	                  			<div class="col-sm-6"></div>
-	                  			<div class="col-xs-3">
-		                  			<label class="control-label">重置数据</label>
-		                  			<button class="btn btn-primary btn-block" ng-click="reset()">清空</button>
-                  				</div>
-                  			</div>
-                  		</div>
-                 	</div>
-                 	
-            			<div class="panel panel-body">
-            				<div class="form-group">
-                  			<div class="col-xs-6 well">
-								<div class="input-group">
-								   <span class="input-group-btn"><button class="btn btn-default" type="button">总体积 </button></span>
-								   <input type="text" class="form-control" readonly="readonly" ng-model="totalVolume">
-								   <span class="input-group-addon">m<sup>3</sup></span>
-								</div>
-                  			</div>
-                  			<div class="col-xs-6 well">
-							   <div class="input-group">
-							         <span class="input-group-btn"><button class="btn btn-default" type="button">总重量 </button></span>
-								  	 <input type="text" class="form-control" readonly="readonly" ng-model="totalWeight">
-								  	 <span class="input-group-addon">kg</span>
-								</div>
-                  			</div>
-                  			</div>
-            			</div>
-            		
-            		</div>
-           		 </div>      
-         		  <div class="panel-foot">
-         		  	
-				  </div>
-         	</div>
+     		
       </div>
       
 	  <!-- 弹出式模态框  -->
