@@ -35,13 +35,10 @@
          </li>
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-             <i class="glyphicon glyphicon-pencil"></i> 版权 <b class="caret"></b>
+             <i class="glyphicon glyphicon-pencil"></i> 版本 V1.3.1<b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-               <li><a href="#">制作</a></li>
-               <li><a href="#">唐</a></li>
-               <li class="divider"></li>
-               <li><a href="#">版本：V1.3</a></li>
+               <li><a href="#">版权所有：唐</a></li>
             </ul>
          </li>
       </ul>
@@ -50,17 +47,16 @@
       
       <!-- 主界面 -->
       <div class="container">
-         <div class="row">
 			<!-- 左侧栏 -->
             <div class="col-sm-4">
-            <div class="form-group">
+               <div class="panel panel-default">
+                <div class="form-group">
             	<button type="button" class="btn btn-primary form-control" data-toggle="collapse" 
   					data-target="#query">
   					<i class="glyphicon glyphicon-search"></i>
   					查询器</button>
-			</div>
-			<div id="query" class="collapse">
-               <div class="panel panel-default">
+				</div>
+               <div id="query" class="collapse">
                <div class="panel panel-body">
                     <label>查询产品</label>
 					<div class="form-group form-inline">
@@ -71,45 +67,48 @@
                </div>
                </div>
 			</div>
-            <div class="form-group">
-              	        <button class="btn btn-warning btn-block" data-toggle="collapse" data-target="#data">
-              	      <i class="glyphicon glyphicon-list-alt"></i>  
-              	        数据表</button>
+			<div class="panel panel-default">
+            		<div class="form-group">
+              	   		<button class="btn btn-warning btn-block" data-toggle="collapse" data-target="#data">
+              	      <i class="glyphicon glyphicon-list-alt"></i> 数据表</button>
               	    </div>
-              	    <div id="data" class="collapse in">
-					<table class="table table-bordered table-striped table-condensed table-hover table-responsive" >
-						<thead>
-							<tr>
-								<th style="text-align: center;">种类</th>
-								<th style="text-align: center;" >尺寸(cm)</th>
-								<th style="text-align: center;">重量(kg)</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="product in productList">
-								<td align="center">{{product.name}}</td>
-								<td align="center">{{product.size}}</td>
-								<td align="center">{{product.weight}}</td>
-							</tr>
-						</tbody>
-					</table>
+	            <div id="data" class="collapse in">
+             		<div class="panel panel-body">
+				<table class="table table-bordered table-striped table-condensed table-hover table-responsive" >
+					<thead>
+						<tr>
+							<th style="text-align: center;">种类</th>
+							<th style="text-align: center;" >尺寸(cm)</th>
+							<th style="text-align: center;">重量(kg)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="product in productList">
+							<td align="center">{{product.name}}</td>
+							<td align="center">{{product.size}}</td>
+							<td align="center">{{product.weight}}</td>
+						</tr>
+					</tbody>
+				</table>
 					</div>   
-               
+              	</div>
+             </div>
             </div>
 			<!-- 中右栏 -->
             <div class="col-sm-8">
 				  <!--  计算器核心界面 -->
+        		<div class="panel panel-default">
+        		 
         		  <div class="form-group">
             	    <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#calc">
             	    <i class="glyphicon glyphicon-yen"></i>
             	    计算器</button>
             	  </div>
+            	  
                   <div id="calc" class="collapse in">
-                  <div class="panel panel-default">
-              	    
+                  
                   	<div class="panel panel-body">
                   		<div class="form-group">
-<!--                   			<div><div class="form-control btn btn-white" ng-click="reset()">计算器</div> -->
                   			<div class="row">
 	                  			<div class="col-sm-3" ng-repeat="product in productList">
 	                  				<label class="control-label">{{product.name}}</label>
@@ -123,7 +122,7 @@
                   			</div>
                   		</div>
                  	</div>
-            		
+                 	
             			<div class="panel panel-body">
             				<div class="form-group">
             				<div class="col-sm-1"></div>
@@ -147,13 +146,13 @@
                   			</div>
                   			</div>
             			</div>
+            		
             		</div>
-            </div>      
+           		 </div>      
          		  <div class="panel-foot">
          		  	
 				  </div>
-         </div>
-      	</div>
+         	</div>
       </div>
       
 	  <!-- 弹出式模态框  -->
@@ -166,7 +165,7 @@
 						<h4 class="modal-title">{{modalTitle}}</h4>					
 					</div>
 					<div class="modal-body">
-						<h5>当前版本V1.3</h5>
+						<h5>当前版本V1.3.1</h5>
 						<blockquote>计算器直接填写数据就能出结果,点击清空消掉已填写的数据</blockquote>
 						<blockquote>数据表用于查看所有产品的详细规格</blockquote>
 						<blockquote>查询器的功能正在进行中</blockquote>
