@@ -43,7 +43,7 @@
          </li>
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-             <i class="glyphicon glyphicon-pencil"></i> 版本 V1.5.1<b class="caret"></b>
+             <i class="glyphicon glyphicon-pencil"></i> 版本 V1.5.2<b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
                <li><a href="#">版权所有：唐</a></li>
@@ -56,32 +56,64 @@
       <!-- 主界面 -->
       <div class="">
             
-            <!-- 左侧栏 -->
-            <div class="col-md-4 hidden-sm hidden-xs">
+			<!-- 主要栏 -->
+            <div class="col-md-8 col-xs-12">
+				  <!--  计算器核心界面 -->
+        		<div class="panel panel-default">
+        		  
+        		  <div class="form-group">
+            	    <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#calc">
+            	    <i class="glyphicon glyphicon-yen"></i>  计算器</button>
+            	  </div>
+            	  
+                  <div id="calc" class="collapse in">
+                  
+                  	<div class="panel panel-body">
+                  		<div class="form-group">
+                  			<div class="row">
+                  			
+								<!--  输入框     -->
+	                  			<div class="col-sm-2 col-md-4 col-xs-4" ng-repeat="product in productList">
+	                  				<label class="control-label">{{product.name}}</label>
+	                  				<input type="number" class="form-control" ng-change="calculator()" ng-model="product.number"/>
+	                  			</div>
+                  			
+                  			</div>
+                  		</div>
+                  		    <div class="row">
+                  				<div class="col-sm-6 col-xs-6">
+									<div class="input-group">
+									   <span class="input-group-btn "><button class="btn btn-default hidden-xs" type="button">总体积 </button></span>
+									   <input type="text" class="form-control" readonly="readonly" ng-model="totalVolume" placeholder="总体积">
+									   <span class="input-group-addon">m<sup>3</sup></span>
+									</div>
+	                  			</div>
+	                  			<div class="col-sm-6 col-xs-6">
+								   <div class="input-group">
+								         <span class="input-group-btn"><button class="btn btn-default hidden-xs" type="button">总重量 </button></span>
+									  	 <input type="text" class="form-control" readonly="readonly" ng-model="totalWeight" placeholder="总重量">
+									  	 <span class="input-group-addon">kg</span>
+									</div>
+	                  			</div>
+                  			</div>
+                 	</div>
+            			<div class="panel-foot">
+		         		  	<div class="form-group" style="margin: 10px">
+				               <button class="btn btn-danger btn-block" ng-click="reset()">重置</button>
+		                  	</div>
+				 		 </div>
+            		
+            		</div>
+           		 </div>      
+         	</div>
+	
+			<!-- 副栏 -->
+            <div class="col-md-4 col-xs-12">
 
-			   <!-- 查询器Panel -->
-               <div class="panel panel-default">
-	              <div class="form-group">
-	            	<button type="button" class="btn btn-primary form-control" data-toggle="collapse" 
-	  					data-target="#query">
-	  					<i class="glyphicon glyphicon-search"></i>
-	  					查询器</button>
-				 </div>
-               <div id="query" class="collapse">
-	               <div class="panel panel-body">
-	                    <label>查询产品</label>
-						<div class="form-group form-inline">
-		  					<select id="queryProduct" class="form-control" style="width:100%" ng-model="queryProduct" ng-options="product.name for product in productList">
-		  						<option value=""></option>
-	  						</select>
-	 					</div>
-	              	</div>
-            	</div>
-             	</div>
-             			<!-- 数据表Panel -->
-			<div class="panel panel-default  hidden-sm hidden-xs">
+				 <!-- 数据表Panel -->
+			<div class="panel panel-default">
             		<div class="form-group">
-              	   		<button class="btn btn-warning btn-block" data-toggle="collapse" data-target="#data">
+              	   		<button class="btn btn-success btn-block" data-toggle="collapse" data-target="#data">
               	      <i class="glyphicon glyphicon-list-alt"></i> 数据表</button>
               	    </div>
 	            <div id="data" class="collapse in">
@@ -105,65 +137,29 @@
 					</div>   
               	</div>
              </div>
+
+			   <!-- 查询器Panel -->
+               <div class="panel panel-default">
+	              <div class="form-group">
+	            	<button type="button" class="btn btn-info form-control" data-toggle="collapse" 
+	  					data-target="#query">
+	  					<i class="glyphicon glyphicon-search"></i> 查询器</button>
+				 </div>
+               <div id="query" class="collapse">
+	               <div class="panel panel-body">
+	                    <label>查询产品</label>
+						<div class="form-group form-inline">
+		  					<select id="queryProduct" class="form-control" style="width:100%" ng-model="queryProduct" ng-options="product.name for product in productList">
+		  						<option value=""></option>
+	  						</select>
+	 					</div>
+	              	</div>
+            	</div>
+             	</div>
              
             </div> 
-			
-			<!-- 左中栏 -->
-            <div class="col-md-8 col-xs-12">
-				  <!--  计算器核心界面 -->
-        		<div class="panel panel-default">
-        		  
-        		  <div class="form-group hidden-xs">
-            	    <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#calc">
-            	    <i class="glyphicon glyphicon-yen"></i>  计算器</button>
-            	  </div>
-            	  
-                  <div id="calc" class="collapse in">
-                  
-                  	<div class="panel panel-body">
-                  		<div class="form-group">
-                  			<div class="row">
-                  			
-								<!--  输入框     -->
-	                  			<div class="col-sm-2 col-md-4 col-xs-4" ng-repeat="product in productList">
-	                  				<label class="control-label">{{product.name}}</label>
-	                  				<input type="number" class="form-control" ng-change="calculator()" ng-model="product.number"/>
-	                  			</div>
-	                  			
-	                  			
-	                  			<div class="col-sm-2 col-md-4 col-xs-4"></div>
-                  			</div>
-                  		</div>
-                 	</div>
-                 	
-            			<div class="panel panel-body">
-            				<div class="form-group">
-                  			<div class="col-sm-6 col-xs-6">
-								<div class="input-group">
-								   <span class="input-group-btn "><button class="btn btn-default hidden-xs" type="button">总体积 </button></span>
-								   <input type="text" class="form-control" readonly="readonly" ng-model="totalVolume" placeholder="总体积">
-								   <span class="input-group-addon">m<sup>3</sup></span>
-								</div>
-                  			</div>
-                  			<div class="col-sm-6 col-xs-6">
-							   <div class="input-group">
-							         <span class="input-group-btn"><button class="btn btn-default hidden-xs" type="button">总重量 </button></span>
-								  	 <input type="text" class="form-control" readonly="readonly" ng-model="totalWeight" placeholder="总重量">
-								  	 <span class="input-group-addon">kg</span>
-								</div>
-                  			</div>
-                  			</div>
-            			</div>
-            		
-            		</div>
-           		 </div>      
-         		  <div class="panel-foot">
-         		  	<div class="form-group">
-		                  			<button class="btn btn-block btn-primary" ng-click="reset()">重置</button>
-                  				</div>
-				  </div>
-         	</div>
-			</div>
+	
+	</div>
 			 
 	  <!-- 弹出式模态框  -->
 	  <div class="modal fade" id="about" data-backdrop="static"
@@ -207,7 +203,7 @@
 		                         { id: 8, name: '1.5kg肉松饼', size: '63*40*30',volume:0.0756,weight:7,number:0},
 		                         { id: 9, name: '2.5kg肉松饼', size: '34*23*17',volume:0.013294,weight:3.2,number:0},
 		                         ];
-		    
+		    console.log($scope.productList);
 		    select2();
 		   	
 		    //使用说明按钮
